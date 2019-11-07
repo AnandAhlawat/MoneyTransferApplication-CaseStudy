@@ -49,7 +49,7 @@
 ## 4) Transfer Money
 #### The api after successfully validating the accounts and validity of the beneficiary, transfers the amount from the authenticated account to the beneficiary account
 
-- _**URI**_ - http://localhost:9999/accounts/checkBalance
+- _**URI**_ - http://localhost:9999/accounts/transfer
 - _**HTTP Method**_ - POST
 - _**Request Body**_ -
 ```json
