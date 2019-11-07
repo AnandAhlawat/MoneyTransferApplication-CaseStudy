@@ -144,7 +144,7 @@ public class MoneyTransferApplication {
 	void initialiseAccountEndpoints()
 	{		
 		// Get Account Details End Point
-		post("/accounts/details", (req,res)->{ 
+		post("/accounts/checkBalance", (req,res)->{ 
 			res.type("application/json");
 			String respString=null;
 			try {

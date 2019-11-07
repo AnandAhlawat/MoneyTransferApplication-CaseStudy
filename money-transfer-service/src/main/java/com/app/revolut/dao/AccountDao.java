@@ -114,7 +114,7 @@ public class AccountDao implements IAccountDao {
 		{
 			if(dateFormat.format(transaction.getTimestamp()).equals(dateFormat.format(new Date())))
 			{
-				totalTodayTransaction.add(transaction.getAmount());
+				totalTodayTransaction = totalTodayTransaction.add(transaction.getAmount());
 				transactionCount++;
 			}
 		}
