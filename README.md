@@ -1,6 +1,7 @@
 # Money Transfer Application - Backend Case Study
 
-#### For the sake of testing the use case, below are the accounts that are hard created in the system
+#### Below are the default accounts, that are created in the system for testing out the use cases
+
 
 | Account Number  | Account Owner Name |  Balance  | Bank Code  |
 | --------------- | ------------------ | --------- | ---------- |
