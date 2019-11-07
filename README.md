@@ -1,5 +1,8 @@
 # Money Transfer Application - Backend Case Study
 
+| Account Number  | Account Owner Name |  Balance  | Bank Code  |
+| --------------- | ------------------ | --------- | ---------- |
+| 92500  		  | Micheal  		   |	1000   | LYDS-5782	|
 
 
 ## Rest Services 
