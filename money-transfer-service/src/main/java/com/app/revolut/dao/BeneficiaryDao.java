@@ -2,6 +2,7 @@ package com.app.revolut.dao;
 
 import java.util.List;
 
+import com.app.revolut.model.Account;
 import com.app.revolut.model.Beneficiary;
 import com.app.revolut.model.TransferLimit;
 import com.app.revolut.model.UpdateTransferLimitReq;
@@ -14,14 +15,25 @@ import com.app.revolut.util.RmtErrors;
 public class BeneficiaryDao implements IBeneficiaryDao {
 
 	@Override
-	public Beneficiary createBeneficiary(int authenticatedAccountNumber, Beneficiary beneficiary) throws Exception {		
-		return Datastore.getInstance().addBeneficiaryData(authenticatedAccountNumber, beneficiary);		
+	public Beneficiary createBeneficiary(int authenticatedAccountNumber, Beneficiary beneficiary) throws Exception {
+		if(!Datastore.getInstance().getAccounts().contains(new Account(authenticatedAccountNumber)))
+			beneficiary.addError(ErrorCodeList.INVALID_ACCOUNT);
+		if(!Datastore.getInstance().getAccounts().contains(new Account(beneficiary.getAccountNumber())))
+			beneficiary.addError(ErrorCodeList.INVALID_BENEFICIARY_ACCOUNT);
+		else
+			beneficiary = Datastore.getInstance().addBeneficiaryData(authenticatedAccountNumber, beneficiary);
+		return beneficiary;		
 	}
 
 	@Override
 	public VerifyBeneficiaryReq verifyBeneficiary(VerifyBeneficiaryReq verifyBeneficiaryReq)
 			throws Exception {
-		updateBeneficiary(verifyBeneficiaryReq.getAuthenticatedAccountNumber(),verifyBeneficiaryReq.getBeneficiaryAccountNumber(),verifyBeneficiaryReq,null,false);
+		if(!Datastore.getInstance().getAccounts().contains(new Account(verifyBeneficiaryReq.getAuthenticatedAccountNumber())))
+			verifyBeneficiaryReq.addError(ErrorCodeList.INVALID_ACCOUNT);
+		if(!Datastore.getInstance().getAccounts().contains(new Account(verifyBeneficiaryReq.getBeneficiaryAccountNumber())))
+			verifyBeneficiaryReq.addError(ErrorCodeList.INVALID_BENEFICIARY_ACCOUNT);
+		else
+			updateBeneficiary(verifyBeneficiaryReq.getAuthenticatedAccountNumber(),verifyBeneficiaryReq.getBeneficiaryAccountNumber(),verifyBeneficiaryReq,null,false);
 
 		return verifyBeneficiaryReq;
 
