@@ -89,3 +89,18 @@
 #### Google Juice
 #### Gson
 
+# How to run the services
+
+#### Route to the pom.xml file and run the below command on command prompt -
+```
+mvn clean install
+
+```
+
+#### Execute the below command to run the services
+```
+mvn exec:java
+
+```
+
+
