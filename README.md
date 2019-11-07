@@ -10,7 +10,7 @@
 - _**Request Body**_ -
 ```json
 {
-	"authenticatedAccountNumber" : "92500"
+    "authenticatedAccountNumber": "92501"
 }
 
 ```
@@ -22,10 +22,10 @@
 - _**Request Body**_ -
 ```json
 {
-    "authenticatedAccountNumber": 92500,
+    "authenticatedAccountNumber": 92501,
     "beneficiaryDetails": {
-        "accountNumber": 92501,
-        "beneficiaryName": "Monika Ahlawat",
+        "accountNumber": 92502,
+        "beneficiaryName": "Monika",
         "bankCode": "HSBC01342345"
     }
 }
@@ -40,8 +40,8 @@
 - _**Request Body**_ -
 ```json
 {
-	"authenticatedAccountNumber":"92501",
-	"beneficiaryAccountNumber":"92502"
+    "authenticatedAccountNumber": "92501",
+    "beneficiaryAccountNumber": "92502"
 }
 
 ```
