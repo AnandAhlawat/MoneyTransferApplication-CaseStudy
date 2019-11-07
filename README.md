@@ -17,19 +17,6 @@
 | 92506  		  | Raven  		       |	1000   | LYDS-5782	|
 | 92507  		  | Monika  		   |	1000   | LYDS-5782	|
 
-#### Error Code details
-
-| ErrorCode  | 				Error Message					 																|
-| ---------- | -------------------------------------------------------------------------------------------------------------|
-| 100        |	Beneficiary Already added in the current account															|
-| 101        |	Beneficiary is not added in the account, Please add before verification										|
-| 102        |	There is no information of the mentioned authenticated account in the System								|
-| 103        |	There is no information of the mentioned benefeciary account in the System									|
-| 104        |	Beneficiary is not linked to the authenticated account														|
-| 105        |	Beneficiary is not verified, Please verify before transfering money											|
-| 106        |	Authenticated account doesn't have the required funds to do this transaction, Please try with a lower amount|
-| 107        |	Maximum transactions per day allowed for the benefeciary have been exceeded									|
-| 108        |	Maximum amount per day allowed for the benefeciary have been exceeded										|
 
 ## Rest Services 
 
@@ -110,6 +97,22 @@
 }
 
 ```
+
+#### Error Code details
+
+| ErrorCode  | 				Error Message					 																|
+| ---------- | -------------------------------------------------------------------------------------------------------------|
+| 100        |	Beneficiary Already added in the current account															|
+| 101        |	Beneficiary is not added in the account, Please add before verification										|
+| 102        |	There is no information of the mentioned authenticated account in the System								|
+| 103        |	There is no information of the mentioned benefeciary account in the System									|
+| 104        |	Beneficiary is not linked to the authenticated account														|
+| 105        |	Beneficiary is not verified, Please verify before transfering money											|
+| 106        |	Authenticated account doesn't have the required funds to do this transaction, Please try with a lower amount|
+| 107        |	Maximum transactions per day allowed for the benefeciary have been exceeded									|
+| 108        |	Maximum amount per day allowed for the benefeciary have been exceeded										|
+
+
 
 
 # Technologies
