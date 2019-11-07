@@ -10,7 +10,7 @@
 - _**Request Body**_ -
 ```json
 {
-    "authenticatedAccountNumber": "92501"
+    "authenticatedAccountNumber": 92501
 }
 
 ```
@@ -40,8 +40,8 @@
 - _**Request Body**_ -
 ```json
 {
-    "authenticatedAccountNumber": "92501",
-    "beneficiaryAccountNumber": "92502"
+    "authenticatedAccountNumber": 92501,
+    "beneficiaryAccountNumber": 92502
 }
 
 ```
