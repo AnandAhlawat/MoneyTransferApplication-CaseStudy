@@ -1,7 +1,7 @@
 # Money Transfer Application - Backend Case Study
 
 
-#### Below are the default accounts, that are created in the system for testing out the use cases
+#### Below are the default bank accounts, that are created in the system for testing out the use cases
 
 
 
