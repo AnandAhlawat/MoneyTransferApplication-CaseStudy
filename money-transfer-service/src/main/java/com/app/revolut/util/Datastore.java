@@ -1,4 +1,4 @@
-package com.app.revolut.beneficiary.util;
+package com.app.revolut.util;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -7,8 +7,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.app.revolut.beneficiary.model.Account;
-import com.app.revolut.beneficiary.model.Beneficiary;
+import com.app.revolut.model.Account;
+import com.app.revolut.model.Beneficiary;
+import com.app.revolut.model.Transaction;
 
 import lombok.Getter;
 
@@ -18,15 +19,18 @@ public class Datastore {
 	private static Datastore instance;
 	
 	@Getter
-	private static List<Account> accounts = new ArrayList<Account>();
+	private List<Account> accounts = Collections.synchronizedList(new ArrayList<Account>());
 	
 	@Getter
-	private Map<Integer, List<Beneficiary>> beneficiaryDataForAuthAccnt = Collections.synchronizedMap(new HashMap<Integer, List<Beneficiary>>());	
+	private Map<Integer, List<Beneficiary>> accountBenefeciaryList = Collections.synchronizedMap(new HashMap<Integer, List<Beneficiary>>());	
+	
+	@Getter
+	private Map<Integer, List<Transaction>> accountTransactionList = Collections.synchronizedMap(new HashMap<Integer, List<Transaction>>());
 
 	private Datastore(){	
 	}
 	
-	static {
+	{
 		//Few sample accounts for test purpose
 		accounts.add(new Account(92500,"Micheal",new BigDecimal(1000),"LYDS-5782"));
 		accounts.add(new Account(92501,"Phillips",new BigDecimal(1000),"LYDS-5782"));
@@ -45,22 +49,21 @@ public class Datastore {
 	}	
 
 	public Beneficiary addBeneficiaryData(int authenticatedAccountNumber, Beneficiary beneficiary) throws Exception{
-		if(this.beneficiaryDataForAuthAccnt.get(authenticatedAccountNumber)!=null && 
-				this.beneficiaryDataForAuthAccnt.get(authenticatedAccountNumber).contains(new Beneficiary(beneficiary.getAccountNumber())))				
+		if(this.accountBenefeciaryList.get(authenticatedAccountNumber)!=null && 
+				this.accountBenefeciaryList.get(authenticatedAccountNumber).contains(new Beneficiary(beneficiary.getAccountNumber())))				
 			beneficiary.addError(ErrorCodeList.BENEFECIARY_ALREADY_ADDED);		
 		else
 		{
 			List<Beneficiary> beneficiaryList;
-			if(this.beneficiaryDataForAuthAccnt.get(authenticatedAccountNumber)==null) {
+			if(this.accountBenefeciaryList.get(authenticatedAccountNumber)==null) {
 				beneficiaryList = new ArrayList<Beneficiary>();
 				beneficiaryList.add(beneficiary);
 
-			} else
-			{
-				beneficiaryList = this.beneficiaryDataForAuthAccnt.get(authenticatedAccountNumber);
+			} else {
+				beneficiaryList = this.accountBenefeciaryList.get(authenticatedAccountNumber);
 				beneficiaryList.add(beneficiary);				
 			}
-			this.beneficiaryDataForAuthAccnt.put(authenticatedAccountNumber, beneficiaryList);
+			this.accountBenefeciaryList.put(authenticatedAccountNumber, beneficiaryList);
 		}
 		return beneficiary;
 	}

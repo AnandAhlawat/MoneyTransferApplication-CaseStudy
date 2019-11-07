@@ -1,8 +1,9 @@
-package com.app.revolut.beneficiary.dao;
+package com.app.revolut.dao;
 
-import com.app.revolut.beneficiary.model.Beneficiary;
-import com.app.revolut.beneficiary.model.UpdateTransferLimitReq;
-import com.app.revolut.beneficiary.model.VerifyBeneficiaryReq;
+import com.app.revolut.model.Beneficiary;
+import com.app.revolut.model.UpdateTransferLimitReq;
+import com.app.revolut.model.VerifyBeneficiaryReq;
+import com.app.revolut.util.RmtErrors;
 
 public interface IBeneficiaryDao {
 	
@@ -11,5 +12,7 @@ public interface IBeneficiaryDao {
 	VerifyBeneficiaryReq verifyBeneficiary(VerifyBeneficiaryReq verifyBeneficiaryReq) throws Exception;
 	
 	UpdateTransferLimitReq updateTransferLimit(UpdateTransferLimitReq verifyBeneficiaryReq) throws Exception;
+	
+	Beneficiary getLinkedBenefeciary(int authenticatedAccountId, int benefeciaryAccountId, RmtErrors rmtErrors) throws Exception;
 
 }

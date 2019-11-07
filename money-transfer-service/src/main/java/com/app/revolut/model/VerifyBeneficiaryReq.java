@@ -1,6 +1,7 @@
-package com.app.revolut.beneficiary.model;
+package com.app.revolut.model;
 
-import com.app.revolut.beneficiary.util.RmtErrors;
+
+import com.app.revolut.util.RmtErrors;
 
 import lombok.Getter;
 import lombok.Setter;

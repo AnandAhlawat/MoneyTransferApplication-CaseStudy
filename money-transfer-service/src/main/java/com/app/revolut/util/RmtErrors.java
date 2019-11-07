@@ -1,4 +1,4 @@
-package com.app.revolut.beneficiary.util;
+package com.app.revolut.util;
 
 import java.util.ArrayList;
 import java.util.List;

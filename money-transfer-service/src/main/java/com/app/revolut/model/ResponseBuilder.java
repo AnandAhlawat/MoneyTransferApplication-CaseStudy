@@ -1,6 +1,7 @@
-package com.app.revolut.beneficiary.model;
+package com.app.revolut.model;
 
-import com.app.revolut.beneficiary.util.RmtError;
+
+import com.app.revolut.util.RmtError;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 

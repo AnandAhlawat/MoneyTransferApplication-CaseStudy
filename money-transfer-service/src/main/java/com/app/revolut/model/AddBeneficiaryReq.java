@@ -1,4 +1,4 @@
-package com.app.revolut.beneficiary.model;
+package com.app.revolut.model;
 
 import lombok.Getter;
 import lombok.Setter;

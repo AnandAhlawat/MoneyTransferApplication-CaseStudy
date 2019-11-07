@@ -1,8 +1,8 @@
-package com.app.revolut.beneficiary.service;
+package com.app.revolut.service;
 
-import com.app.revolut.beneficiary.model.Beneficiary;
-import com.app.revolut.beneficiary.model.UpdateTransferLimitReq;
-import com.app.revolut.beneficiary.model.VerifyBeneficiaryReq;
+import com.app.revolut.model.Beneficiary;
+import com.app.revolut.model.UpdateTransferLimitReq;
+import com.app.revolut.model.VerifyBeneficiaryReq;
 
 public interface IBeneficiaryService {
 	

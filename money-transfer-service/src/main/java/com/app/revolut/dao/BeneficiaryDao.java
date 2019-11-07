@@ -1,14 +1,15 @@
-package com.app.revolut.beneficiary.dao;
+package com.app.revolut.dao;
 
 import java.util.List;
 
-import com.app.revolut.beneficiary.model.Beneficiary;
-import com.app.revolut.beneficiary.model.TransferLimit;
-import com.app.revolut.beneficiary.model.UpdateTransferLimitReq;
-import com.app.revolut.beneficiary.model.VerifyBeneficiaryReq;
-import com.app.revolut.beneficiary.util.Datastore;
-import com.app.revolut.beneficiary.util.ErrorCodeList;
-import com.app.revolut.beneficiary.util.RmtErrors;
+import com.app.revolut.model.Beneficiary;
+import com.app.revolut.model.TransferLimit;
+import com.app.revolut.model.UpdateTransferLimitReq;
+import com.app.revolut.model.VerifyBeneficiaryReq;
+import com.app.revolut.util.Datastore;
+import com.app.revolut.util.ErrorCodeList;
+import com.app.revolut.util.RmtErrors;
+
 
 public class BeneficiaryDao implements IBeneficiaryDao {
 
@@ -25,7 +26,7 @@ public class BeneficiaryDao implements IBeneficiaryDao {
 		return verifyBeneficiaryReq;
 
 	}	
-	
+
 	@Override
 	public UpdateTransferLimitReq updateTransferLimit(UpdateTransferLimitReq updateTransferLimitReq) throws Exception{
 		updateBeneficiary(updateTransferLimitReq.getAuthenticatedAccountNumber(),updateTransferLimitReq.getBenefeciaryAccountNumber(),
@@ -33,12 +34,12 @@ public class BeneficiaryDao implements IBeneficiaryDao {
 		return updateTransferLimitReq;
 	}
 
-		
+
 
 	private void updateBeneficiary(int authenticatedAccountNo, int beneficiaryAccountNo, RmtErrors rmtError, TransferLimit limit,boolean limitUpdate) {
-		if(Datastore.getInstance().getBeneficiaryDataForAuthAccnt().get(authenticatedAccountNo)!=null)
+		if(Datastore.getInstance().getAccountBenefeciaryList().get(authenticatedAccountNo)!=null)
 		{
-			List<Beneficiary> benfList = Datastore.getInstance().getBeneficiaryDataForAuthAccnt().get(authenticatedAccountNo);
+			List<Beneficiary> benfList = Datastore.getInstance().getAccountBenefeciaryList().get(authenticatedAccountNo);
 			boolean found = false;
 			for (Beneficiary benf : benfList){
 				if(benf.getAccountNumber() == beneficiaryAccountNo)
@@ -52,9 +53,24 @@ public class BeneficiaryDao implements IBeneficiaryDao {
 			}
 			if(!found)
 				rmtError.addError(ErrorCodeList.BENEFECIARY_MISSING);
-			Datastore.getInstance().getBeneficiaryDataForAuthAccnt().put(beneficiaryAccountNo,benfList);
+			Datastore.getInstance().getAccountBenefeciaryList().put(beneficiaryAccountNo,benfList);
 		}else  {
 			rmtError.addError(ErrorCodeList.BENEFECIARY_MISSING);
+		}
+	}
+
+	public Beneficiary getLinkedBenefeciary(int authenticatedAccountId, int benefeciaryAccountId, RmtErrors rmtErrors)
+	{
+		if(Datastore.getInstance().getAccountBenefeciaryList().get(authenticatedAccountId)!=null)
+		{
+			return Datastore.getInstance().getAccountBenefeciaryList().get(authenticatedAccountId).stream()
+					.filter(benefeciary -> benefeciaryAccountId == benefeciary.getAccountNumber())
+					.findAny()
+					.orElse(null);
+		}
+		else  {
+			rmtErrors.addError(ErrorCodeList.INVALID_ACCOUNT);
+			return null;
 		}
 	}
 
